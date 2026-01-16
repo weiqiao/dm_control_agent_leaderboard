@@ -34,7 +34,7 @@ env = {}
 
 # Default 5-task suite (fast smoke test; reproducible baseline)
 tasks = ["cartpole_balance", "acrobot_swingup", "reacher_easy", "walker_walk", "cheetah_run"]
-episodes = 1
-max_steps = 20
+episodes = 3
+max_steps = 100
 seed = 0
 role = "candidate"
