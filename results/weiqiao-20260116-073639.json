@@ -1,0 +1,85 @@
+{
+  "participants": {
+    "candidate": "019bc59e-bdd2-7f71-8b9a-4826bbc5b3e9"
+  },
+  "results": [
+    {
+      "participant_role": "candidate",
+      "participant_url": "http://candidate:9009/",
+      "episodes": 1,
+      "max_steps": 20,
+      "seed": 0,
+      "num_tasks_requested": 5,
+      "num_tasks_succeeded": 5,
+      "overall_mean_return": 4.455505501134821,
+      "results": [
+        {
+          "task": "cartpole_balance",
+          "domain": "cartpole",
+          "name": "balance",
+          "episodes": 1,
+          "max_steps": 20,
+          "seed": 0,
+          "returns": [
+            18.70390841170684
+          ],
+          "return_mean": 18.70390841170684,
+          "return_std": 0.0
+        },
+        {
+          "task": "acrobot_swingup",
+          "domain": "acrobot",
+          "name": "swingup",
+          "episodes": 1,
+          "max_steps": 20,
+          "seed": 0,
+          "returns": [
+            0.06141437097293899
+          ],
+          "return_mean": 0.06141437097293899,
+          "return_std": 0.0
+        },
+        {
+          "task": "reacher_easy",
+          "domain": "reacher",
+          "name": "easy",
+          "episodes": 1,
+          "max_steps": 20,
+          "seed": 0,
+          "returns": [
+            0.0
+          ],
+          "return_mean": 0.0,
+          "return_std": 0.0
+        },
+        {
+          "task": "walker_walk",
+          "domain": "walker",
+          "name": "walk",
+          "episodes": 1,
+          "max_steps": 20,
+          "seed": 0,
+          "returns": [
+            3.3304672993330886
+          ],
+          "return_mean": 3.3304672993330886,
+          "return_std": 0.0
+        },
+        {
+          "task": "cheetah_run",
+          "domain": "cheetah",
+          "name": "run",
+          "episodes": 1,
+          "max_steps": 20,
+          "seed": 0,
+          "returns": [
+            0.18173742366123447
+          ],
+          "return_mean": 0.18173742366123447,
+          "return_std": 0.0
+        }
+      ],
+      "failures": []
+    }
+  ]
+}

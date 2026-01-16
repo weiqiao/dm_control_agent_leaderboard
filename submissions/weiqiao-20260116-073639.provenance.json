@@ -1,0 +1,17 @@
+{
+  "image_digests": {
+    "green-agent": "ghcr.io/weiqiao/dm_control_green_agent@sha256:976fd06de36386382fde52b03114afdd56d9f3bffd0925ea0bde8e8062678a19",
+    "candidate": "ghcr.io/weiqiao/dm_control_purple_agent@sha256:a682331f59395ad49a076f12742a922e5f7cef736f73102a77f861330e6df76b",
+    "agentbeats-client": "ghcr.io/agentbeats/agentbeats-client@sha256:13dfe3ef4e583a80e7ce2fe3becd0ce3b879841368a7f4fa40b6ebbabeeb014e"
+  },
+  "timestamp": "2026-01-16T07:36:39Z",
+  "github_actions": {
+    "run_url": "https://github.com/weiqiao/dm_control_agent_leaderboard/actions/runs/21059225150",
+    "run_logs_url": "https://api.github.com/repos/weiqiao/dm_control_agent_leaderboard/actions/runs/21059225150/logs",
+    "ref": "refs/heads/assessment1",
+    "sha": "dd8d5ab82c858efd0d42d0a07eafdff59847cdf2",
+    "repository_url": "https://github.com/weiqiao/dm_control_agent_leaderboard",
+    "workflow_ref": "weiqiao/dm_control_agent_leaderboard/.github/workflows/run-scenario.yml@refs/heads/assessment1",
+    "workflow_sha": "dd8d5ab82c858efd0d42d0a07eafdff59847cdf2"
+  }
+}
