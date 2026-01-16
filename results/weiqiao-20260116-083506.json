@@ -1,0 +1,95 @@
+{
+  "participants": {
+    "candidate": "019bc59e-bdd2-7f71-8b9a-4826bbc5b3e9"
+  },
+  "results": [
+    {
+      "participant_role": "candidate",
+      "participant_url": "http://candidate:9009/",
+      "episodes": 3,
+      "max_steps": 100,
+      "seed": 0,
+      "num_tasks_requested": 5,
+      "num_tasks_succeeded": 5,
+      "overall_mean_return": 22.169844447099244,
+      "results": [
+        {
+          "task": "cartpole_balance",
+          "domain": "cartpole",
+          "name": "balance",
+          "episodes": 3,
+          "max_steps": 100,
+          "seed": 0,
+          "returns": [
+            69.4656141325549,
+            98.34475034651886,
+            90.64354234225797
+          ],
+          "return_mean": 86.15130227377726,
+          "return_std": 12.210276893961604
+        },
+        {
+          "task": "acrobot_swingup",
+          "domain": "acrobot",
+          "name": "swingup",
+          "episodes": 3,
+          "max_steps": 100,
+          "seed": 0,
+          "returns": [
+            0.06460303541873039,
+            0.2966899854684896,
+            30.006976928888157
+          ],
+          "return_mean": 10.122756649925126,
+          "return_std": 14.060586241093443
+        },
+        {
+          "task": "reacher_easy",
+          "domain": "reacher",
+          "name": "easy",
+          "episodes": 3,
+          "max_steps": 100,
+          "seed": 0,
+          "returns": [
+            0.0,
+            28.0,
+            0.0
+          ],
+          "return_mean": 9.333333333333334,
+          "return_std": 13.199326582148887
+        },
+        {
+          "task": "walker_walk",
+          "domain": "walker",
+          "name": "walk",
+          "episodes": 3,
+          "max_steps": 100,
+          "seed": 0,
+          "returns": [
+            6.699478801583472,
+            2.7419320299846563,
+            4.738123555891851
+          ],
+          "return_mean": 4.726511462486659,
+          "return_std": 1.6156825684279672
+        },
+        {
+          "task": "cheetah_run",
+          "domain": "cheetah",
+          "name": "run",
+          "episodes": 3,
+          "max_steps": 100,
+          "seed": 0,
+          "returns": [
+            1.0353628657989653,
+            0.3055639844522642,
+            0.20502869767031462
+          ],
+          "return_mean": 0.515318515973848,
+          "return_std": 0.37001029743405245
+        }
+      ],
+      "failures": []
+    }
+  ]
+}
