@@ -1,16 +1,40 @@
 [green_agent]
-agentbeats_id = ""
-env = { API_KEY = "${GITHUB_SECRET_NAME}", LOG_LEVEL = "INFO" }
+## DeepMind Control Suite (DMC) leaderboard scenario
+##
+## This repository is a leaderboard wrapper around the green evaluator in:
+##   dmc-green-evaluator-template.zip  (green-agent-template-main)
+##
+## Recommended: set the green agent's AgentBeats ID (from agentbeats.dev).
+agentbeats_id = "REPLACE_WITH_YOUR_GREEN_AGENT_AGENTBEATS_ID"
 
-[[participants]]
-agentbeats_id = ""
-name = "role_1_name"
-env = {}
+## Environment variables for the green agent container.
+## - Use ${SECRET_NAME} syntax for secrets (GitHub Actions secrets for forks).
+## - Use direct values for non-secrets.
+env = { LOG_LEVEL = "INFO" }
 
+## The purple-agent submission under evaluation.
+## Submitters fill in their AgentBeats ID (or use `image = ...` for local testing).
 [[participants]]
+name = "candidate"
 agentbeats_id = ""
-name = "role_2_name"
 env = {}
 
 [config]
-# Add your assessment config here
+## Green agent config schema (see green-agent-template-main/src/agent.py)
+##
+## tasks:
+##   - "all" (evaluate on every task exposed by dm_control.suite)
+##   - "domain_task" (e.g., "walker_walk")
+##   - ["domain_task", ...] (list)
+## episodes: number of episodes per task
+## max_steps: max environment steps per episode
+## seed: environment seed
+## role: which participant role to evaluate (default: first participant)
+## domains: optional list of DMC domains to restrict to (e.g., ["walker", "cartpole"]) 
+
+# Default 5-task suite (fast smoke test; reproducible baseline)
+tasks = ["cartpole_balance", "acrobot_swingup", "reacher_easy", "walker_walk", "cheetah_run"]
+episodes = 5
+max_steps = 1000
+seed = 0
+role = "candidate"

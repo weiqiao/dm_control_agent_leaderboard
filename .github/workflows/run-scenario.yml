@@ -5,10 +5,27 @@ on:
     paths:
       - 'scenario.toml'
 
+  # Manual runs are useful for quick iteration. They let you override the task set
+  # without committing changes to scenario.toml.
+  workflow_dispatch:
+    inputs:
+      tasks:
+        description: |
+          Optional DMC task selection override.
+
+          Accepted formats:
+          - Single task: walker_walk
+          - Comma-separated: cartpole_balance,reacher_easy,walker_walk
+          - JSON list: ["cartpole_balance", "reacher_easy", "walker_walk"]
+
+          If omitted, the workflow uses a small default suite of 5 representative tasks.
+        required: false
+        default: ""
+
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: github.event.repository.fork == true || github.ref != 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' || github.event.repository.fork == true || github.ref != 'refs/heads/main'
     permissions:
       contents: write
       packages: read
@@ -24,6 +41,15 @@ jobs:
 
       - name: Install dependencies
         run: pip install tomli tomli-w pyyaml requests
+
+      - name: Patch DMC tasks (workflow_dispatch only)
+        if: github.event_name == 'workflow_dispatch'
+        env:
+          TASKS_INPUT: ${{ inputs.tasks }}
+        run: |
+          python scripts/patch_scenario_tasks.py --scenario scenario.toml --tasks "$TASKS_INPUT"
+          echo "Patched scenario.toml tasks:" >> $GITHUB_STEP_SUMMARY
+          python -c "import tomllib, pathlib; d=tomllib.loads(pathlib.Path('scenario.toml').read_text()); print(d.get('config',{}).get('tasks'))" >> $GITHUB_STEP_SUMMARY
 
       - name: Generate docker-compose.yml
         run: python generate_compose.py --scenario scenario.toml

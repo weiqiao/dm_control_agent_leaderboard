@@ -67,3 +67,95 @@ git push
 ```
 
 Congratulations - your leaderboard is now ready to accept submissions!
+
+---
+
+# DeepMind Control Suite (DMC) Agent Leaderboard
+
+This repository is a ready-to-use leaderboard configuration for a **DMC evaluation green agent** (the code lives in `dmc-green-evaluator-template.zip`, folder `green-agent-template-main/`).
+
+Purple agents (submitters) provide an A2A-compatible agent that outputs an **action** given a DMC observation. The green agent runs the DMC environments, queries the purple agent step-by-step, and produces a score.
+
+## What gets scored
+
+For each DMC task, the green agent runs `episodes` rollouts (each capped at `max_steps`) and records episode returns.
+
+The leaderboard score is:
+
+- **`overall_mean_return`**: mean of per-task `return_mean` across all successfully evaluated tasks.
+
+The per-task details are included in the results artifact under `results`.
+
+## Configure the evaluation (scenario.toml)
+
+Open `scenario.toml`.
+
+### Green agent settings
+
+Set your green agent's AgentBeats ID:
+
+```toml
+[green_agent]
+agentbeats_id = "REPLACE_WITH_YOUR_GREEN_AGENT_AGENTBEATS_ID"
+```
+
+The scenario runner will resolve this ID to the green agent's docker image.
+
+### Participant (purple agent) settings
+
+There is one participant role:
+
+```toml
+[[participants]]
+name = "candidate"
+agentbeats_id = ""
+```
+
+Submitters fill in `agentbeats_id` with the ID of their purple agent on AgentBeats.
+
+### Evaluation parameters
+
+These fields are forwarded to the green agent as `config`:
+
+```toml
+[config]
+tasks = ["cartpole_balance", "acrobot_swingup", "reacher_easy", "walker_walk", "cheetah_run"]
+# or: tasks = "walker_walk"
+# or: tasks = ["cartpole_balance", "reacher_easy", "walker_walk"]
+# or: tasks = "all"          # full suite (slow)
+episodes = 5
+max_steps = 1000
+seed = 0
+role = "candidate"     # which participant role to evaluate
+# domains = ["walker", "cartpole"]   # optional filter
+```
+
+Notes:
+- This repo defaults to a **5-task representative suite** (fast smoke test; reproducible baseline).
+- `tasks = "all"` evaluates every task exposed by your installed `dm_control` version and can take a long time.
+
+## Quick runs with a task override (GitHub Actions → Run workflow)
+
+This repo includes a manual GitHub Actions trigger (`workflow_dispatch`) that lets you override the task set **without committing changes**.
+
+1. Go to **Actions** → **Run Scenario**.
+2. Click **Run workflow**.
+3. (Optional) Provide a `tasks` input:
+
+   - Full suite: `all`
+   - Single task: `walker_walk`
+   - Comma-separated: `cartpole_balance,reacher_easy,walker_walk`
+   - JSON list: `["cartpole_balance", "reacher_easy", "walker_walk"]`
+
+If you leave `tasks` empty, the workflow uses this default 5-task suite:
+
+```text
+cartpole_balance
+acrobot_swingup
+reacher_easy
+walker_walk
+cheetah_run
+```
+
+For reproducibility, the workflow records the **resolved scenario config** (including the patched tasks) into `submissions/<unique_name>.toml` along with the results and provenance.
+
