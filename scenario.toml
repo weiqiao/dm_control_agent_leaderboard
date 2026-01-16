@@ -5,7 +5,7 @@
 ##   dmc-green-evaluator-template.zip  (green-agent-template-main)
 ##
 ## Recommended: set the green agent's AgentBeats ID (from agentbeats.dev).
-agentbeats_id = "REPLACE_WITH_YOUR_GREEN_AGENT_AGENTBEATS_ID"
+agentbeats_id = "019bc526-3b58-7913-b9bf-05d46abd04b8"
 
 ## Environment variables for the green agent container.
 ## - Use ${SECRET_NAME} syntax for secrets (GitHub Actions secrets for forks).
@@ -16,7 +16,7 @@ env = { LOG_LEVEL = "INFO" }
 ## Submitters fill in their AgentBeats ID (or use `image = ...` for local testing).
 [[participants]]
 name = "candidate"
-agentbeats_id = ""
+agentbeats_id = "019bc59e-bdd2-7f71-8b9a-4826bbc5b3e9"
 env = {}
 
 [config]
